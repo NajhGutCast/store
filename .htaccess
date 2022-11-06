@@ -1,0 +1,48 @@
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_METHOD} ^(CONNECT|DEBUG|DELETE|MOVE|PUT|TRACE|TRACK) [NC]
+
+    
+    ### START PAGE ROUTING ###
+    DirectoryIndex index.php index.html
+    ErrorDocument 404 404.php
+    ### END PAGE ROUTING ###
+
+    ### START TEMPLATE ROUTING ###
+    RewriteRule ^template/emailcode         views/general/html/emailcode.template.html [QSA]
+    RewriteRule ^template/messagecode       views/general/html/messagecode.template.txt [QSA]
+    ### END TEMPLATE ROUTING ###
+
+    #### START APIS ####
+    RewriteRule ^api/(.+)                   components/api.php?path=$1 [QSA]
+    #### START APIS ####
+
+    #### START VIEWS ####
+    # VIEWS
+    RewriteRule ^login                      pages/login/login.php [QSA]
+    RewriteRule ^home                       pages/home/home.php [QSA]
+    RewriteRule ^activities/pending         pages/pending/pending.php [QSA]
+    RewriteRule ^modules                    pages/modules/modules.php [QSA]
+    RewriteRule ^environments               pages/environments/environments.php [QSA]
+    RewriteRule ^users                      pages/users/users.php [QSA]
+    RewriteRule ^views                      pages/views/views.php [QSA]
+    RewriteRule ^roles                      pages/roles/roles.php [QSA]
+    RewriteRule ^permissions                pages/permissions/permissions.php [QSA]
+    RewriteRule ^me                         pages/me/me.php [QSA]
+
+    # ACTIVITIES
+    RewriteRule ^activityespending          pages/activities_pending/activities_pending.php [QSA]
+
+
+    # ASSETS
+    RewriteRule ^assets/(.+)                lte/assets/$1 [QSA]
+    RewriteRule ^gLibraries/(.+)            pages/gLibraries/$1.min.js [QSA]
+    RewriteRule ^session                    pages/session/session.php [QSA]
+    RewriteRule ^script/(.+)/(.+)           pages/$1/$1.js?v=$2 [QSA]
+    RewriteRule ^crud/(.+)/(.+)             pages/$1/crud.js?v=$2 [QSA]
+    RewriteRule ^extra/(.+)/(.+)            pages/$1/extra.js?v=$2 [QSA]
+    ####  END VIEWS  ####
+
+</IfModule>

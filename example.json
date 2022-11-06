@@ -1,0 +1,12 @@
+{
+  "username": "gysmoy",
+  "password": "abcd1234",
+  "lastname": "Gamboa Palomino",
+  "name": "Carlos Manuel",
+  "image_content": "[base64]",
+  "image_type": "image/[jpe|jpeg|svg|png]",
+  "email": "gysmoy@gmail.com",
+  "phone_prefix": "51",
+  "phone_number": "999413711",
+  "_role": 5
+}
