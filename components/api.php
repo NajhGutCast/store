@@ -17,14 +17,14 @@ try {
         $_SERVER['HTTP_SODE_AUTH_REQUIRED'] == 'Yes'
     ) {
 
-        if (!$_SESSION['auth_token'] || !$_SESSION['username']) {
+        if (!$_SESSION['token'] || !$_SESSION['usuario']) {
             $status = 401;
             session_unset();
             session_destroy();
             throw new Exception('No tienes una sesión activa');
         }
-        $headers[] = 'SoDe-Auth-Token: ' . $_SESSION['auth_token'];
-        $headers[] = 'SoDe-Auth-User: ' . $_SESSION['username'];
+        $headers[] = 'SoDe-Auth-Token: ' . $_SESSION['token'];
+        $headers[] = 'SoDe-Auth-User: ' . $_SESSION['usuario'];
     }
 
     $path = $_GET['path'];
@@ -32,8 +32,8 @@ try {
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://backactivity.sode.me/api/$path",
-        // CURLOPT_URL => "http://localhost:8000/api/$path",
+        // CURLOPT_URL => "https://backstore.sode.me/api/$path",
+        CURLOPT_URL => "http://localhost:8000/api/$path",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -52,18 +52,18 @@ try {
 
     // Guardando consulta de sesión
     if (
-        in_array($path, ['session/verify', 'session/login'])
+        in_array($path, ['sesion/verificar', 'sesion/ingresar'])
     ) {
         if ($status == 200) {
             $response = json_decode($response, true);
             $_SESSION = $response['data'];
-            unset($response['data']['auth_token']);
+            unset($response['data']['token']);
             $response = json_encode($response);
         } else {
             session_unset();
             session_destroy();
         }
-    } else if (str_contains($path, 'session/logout')) {
+    } else if (str_contains($path, 'sesion/cerrar')) {
         session_unset();
         session_destroy();
     }

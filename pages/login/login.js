@@ -4,7 +4,11 @@ window.onload = async () => {
     checkbox.checked = true;
   }
   try {
-    var res = await fetch(`./api/session/verify`, {
+    /**
+     * Comprobando si el usuario está logueado. Si lo está,
+     * redirige a la página de inicio.
+     */
+    var res = await fetch(`./api/sesion/verificar`, {
       method: 'POST',
       headers: {
         'Sode-Auth-Required': 'Yes'
@@ -12,16 +16,19 @@ window.onload = async () => {
     });
     var data = await res.json();
     if (!res.ok) {
-      gCookie.clean(['SoDe-Auth-Token', 'SoDe-Auth-User']);
       throw new Error(data.message);
     }
-    location.href = './home';
+    location.href = './inicio';
   } catch (error) {
+    /**
+     * Comprobando si el usuario recordado existe. Si lo está, 
+     * pinta sus datos para solicitar solo la contraseña
+     */
     var sode_remember = gCookie.get('SoDe-Remember');
     if (!sode_remember) {
       return;
     }
-    var res = await fetch(`./api/users/get/${sode_remember}`);
+    var res = await fetch(`./api/usuarios/obtener/${sode_remember}`);
     if (!res.ok) {
       gNotify.add({
         title: 'Error de sesión',
@@ -32,18 +39,21 @@ window.onload = async () => {
       return;
     }
     var data = await res.json();
-    drawUser(data.data);
+    mostrarDatos(data.data);
   } finally {
-    gLoader.hide();
+    /**
+     * Oculta la pantalla de carga
+     */
+    gLoader.ocultar();
   }
 }
 
 class gLoader {
-  static show() {
+  static mostrar() {
     loader.style.opacity = 1;
     loader.style.display = 'grid';
   }
-  static hide() {
+  static ocultar() {
     loader.style.opacity = 0;
     setTimeout(() => {
       loader.style.display = 'none';
@@ -51,16 +61,20 @@ class gLoader {
   }
 }
 
-const drawUser = (data) => {
-  image.src = `./api/profile/${data.relative_id}/mini`;
-  title.innerText = data.name;
-  description.innerText = data.role.role;
+const mostrarDatos = (data) => {
+  /**
+   * Pinta los datos después de ingresar el usuario o
+   * verificar que el usuario recordado existe
+   */
+  image.src = `./api/perfil/${data.id_relativo}/mini`;
+  title.innerText = data.persona.nombres;
+  description.innerText = data.rol.rol;
   input.type = 'password';
   input.value = null;
   label.innerText = 'Contraseña';
   btn_submit.innerText = 'Iniciar sesión';
   btn_forgot.innerText = 'Usar otra cuenta';
-  sessionStorage.username = data.username;
+  sessionStorage.usuario = data.usuario;
 }
 
 image.onerror = () => {
@@ -70,28 +84,35 @@ image.onerror = () => {
 
 form.onsubmit = async (e) => {
   e.preventDefault();
-  gLoader.show();
+  gLoader.mostrar();
   if (input.type == 'password') {
     try {
-      var password = input.value;
-      if (!password) {
+      /**
+       * Verifica si la contraseña está vacía, si lo está,
+       * arroja un error. Si no es así, envía una solicitud
+       * POST al servidor con el nombre de usuario y la contraseña.
+       * Si la solicitud no tiene éxito, arroja un error.
+       * Si tiene éxito, redirige a la página de inicio.
+       */
+      var clave = input.value;
+      if (!clave) {
         throw new Error('Ingrese contraseña para continuar');
       }
-      var res = await fetch(`./api/session/login`, {
+      var res = await fetch(`./api/sesion/ingresar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: gJSON.stringify({
-          'username': sessionStorage.username,
-          'password': password
+          'usuario': sessionStorage.usuario,
+          'clave': clave
         })
       });
       var data = await res.text();
       if (!res.ok) {
-        let message = gJSON.parseable(data) ? gJSON.parse(data).message : 'Error al iniciar sesión';
-        throw new Error(message);
+        let mensaje = gJSON.parseable(data) ? gJSON.parse(data).message : 'Error al iniciar sesión';
+        throw new Error(mensaje);
       }
       data = gJSON.parse(data);
       gNotify.add({
@@ -100,14 +121,15 @@ form.onsubmit = async (e) => {
         type: 'success'
       });
       if (checkbox.checked) {
-        gCookie.set('SoDe-Remember', sessionStorage.username);
-      } else{
+        gCookie.set('SoDe-Remember', sessionStorage.usuario);
+      } else {
         gCookie.clean('SoDe-Remember');
       }
-      // gCookie.set('SoDe-Auth-Token', data.data.auth_token);
-      // gCookie.set('SoDe-Auth-User', data.data.username);
-      location.href = './home';
+      location.href = './inicio';
     } catch (error) {
+      /**
+       * Muestra el error en forma de notificación
+       */
       gNotify.add({
         title: 'Error de sesión',
         body: error.message,
@@ -116,24 +138,31 @@ form.onsubmit = async (e) => {
     }
   } else {
     try {
-      var username = input.value;
-      if (!username) {
+      /**
+       * Comprobando si el usuario existe. Si existe,
+       * muestra los datos del usuario.
+       */
+      var usuario = input.value;
+      if (!usuario) {
         throw new Error('Ingrese usuario para continuar');
       }
-      var res = await fetch(`./api/users/get/${username}`);
+      var res = await fetch(`./api/usuarios/obtener/${usuario}`);
       var data = await res.text();
       if (!res.ok) {
         let message = gJSON.parseable(data) ? gJSON.parse(data).message : 'Error al obtener usuario';
         throw new Error(message);
       }
       data = gJSON.parse(data);
-      drawUser(data.data);
+      mostrarDatos(data.data);
       gNotify.add({
         title: 'Operación correcta',
-        body: `Se encontró el usuario ${username}`,
+        body: `Se encontró el usuario ${usuario}`,
         type: 'success'
       });
     } catch (error) {
+      /**
+       * Muestra el error en forma de notificación
+       */
       gNotify.add({
         title: 'Error de sesión',
         body: error.message,
@@ -141,7 +170,7 @@ form.onsubmit = async (e) => {
       });
     }
   }
-  gLoader.hide();
+  gLoader.ocultar();
 };
 
 btn_forgot.onclick = () => {

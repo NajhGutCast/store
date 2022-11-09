@@ -10,46 +10,45 @@ prepath = typeof prepath == 'undefined' ? '' : prepath;
  * @param session - El objeto de sesión que desea dibujar.
  */
 
-const hasPermission = (view, permission) => {
-  let flatten = gJSON.flatten(permissions);
+const tienePermiso = (vista, permiso) => {
+  let flatten = gJSON.flatten(permisos);
   if (
-    flatten.isRoot || flatten.isAdmin ||
-    flatten[`${view}.all`] ||
-    flatten[`${view}.${permission}`]
+    flatten.esRoot || flatten.esAdmin ||
+    flatten[`${vista}.todo`] ||
+    flatten[`${vista}.${permiso}`]
   ) {
     return true;
   }
   return false;
 }
 
-const setgAttr = (element, attr, data, regexp) => {
+const setgAttr = (element, attr, datos, regexp) => {
   let attrs = element.getAttribute(attr);
   let list = attrs.match(/(?=\S)[^;]+?(?=\s*(;|$))/g).filter(Boolean);
   list.forEach(e => {
     let kv = e.match(/(?=\S)[^:]+?(?=\s*(:|$))/g);
     element.setAttribute(kv[0],
-      kv[1].replace(regexp, matched => data[matched.replace('__', '').replace('__', '')])
+      kv[1].replace(regexp, matched => datos[matched.replace('__', '').replace('__', '')])
     );
   })
 }
-const setgText = (element, attr, data, regexp) => {
+const setgText = (element, attr, datos, regexp) => {
   let template = element.getAttribute(attr);
-  element.innerText = template.replace(regexp, matched => data[matched.replace('__', '').replace('__', '')]);
+  element.innerText = template.replace(regexp, matched => datos[matched.replace('__', '').replace('__', '')]);
 }
 
-const drawSession = (session) => {
-  /* Flattening the session object and the permissions object. */
-  permissions = gJSON.flatten(session.role.permissions);
-  var data = gJSON.flatten(session);
+const drawSession = (sesion) => {
+  permisos = gJSON.flatten(sesion.rol.permisos);
+  var datos = gJSON.flatten(sesion);
 
-  gCookie.set('SoDe-Remember', data.username);
-  let keys = `\\b(?:__${Object.keys(data).join('__|__')}__)\\b`;
+  gCookie.set('SoDe-Remember', datos.username);
+  let keys = `\\b(?:__${Object.keys(datos).join('__|__')}__)\\b`;
   let regexp = new RegExp(keys, 'gi');
 
   let g_texts = g.Query('[g-text]');
   g_texts.forEach(g_text => {
     try {
-      setgText(g_text, 'g-text', data, regexp);
+      setgText(g_text, 'g-text', datos, regexp);
     } catch (error) {
       console.warn(error);
     }
@@ -59,7 +58,7 @@ const drawSession = (session) => {
   let g_attrs = g.Query('[g-attr]');
   g_attrs.forEach(g_attr => {
     try {
-      setgAttr(g_attr, 'g-attr', data, regexp);
+      setgAttr(g_attr, 'g-attr', datos, regexp);
     } catch (error) {
       console.warn(error);
     }
@@ -71,17 +70,17 @@ const drawSession = (session) => {
       let cond = Boolean(eval(g_cond.getAttribute('g-cond')));
       if (cond) {
         if (g_cond.hasAttribute('g-if-attr')) {
-          setgAttr(g_cond, 'g-if-attr', data, regexp);
+          setgAttr(g_cond, 'g-if-attr', datos, regexp);
         }
         if (g_cond.hasAttribute('g-if-text')) {
-          setgText(g_cond, 'g-if-text', data, regexp);
+          setgText(g_cond, 'g-if-text', datos, regexp);
         }
       } else {
         if (g_cond.hasAttribute('g-else-attr')) {
-          setgAttr(g_cond, 'g-else-attr', data, regexp);
+          setgAttr(g_cond, 'g-else-attr', datos, regexp);
         }
         if (g_cond.hasAttribute('g-else-text')) {
-          setgText(g_cond, 'g-else-text', data, regexp);
+          setgText(g_cond, 'g-else-text', datos, regexp);
         }
       }
     } catch (error) {
