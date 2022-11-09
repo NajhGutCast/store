@@ -93,7 +93,7 @@ const drawSession = (sesion) => {
 (async () => {
   alertConsole();
   try {
-    var res = await fetch(`${prepath}./api/session/verify`, {
+    var res = await fetch(`${prepath}./api/sesion/verificar`, {
       method: 'POST',
       headers: {
         'SoDe-Auth-Required': 'Yes'
@@ -114,7 +114,7 @@ g.Query('#btn_logout').forEach(btn => {
   btn.onclick = async () => {
     gCookie.clean();
     try {
-      var res = await fetch(`${prepath}./api/session/logout`, {
+      var res = await fetch(`${prepath}./api/sesion/cerrar`, {
         method: 'POST',
         headers: {
           'SoDe-Auth-Required': 'Yes'
@@ -139,11 +139,11 @@ g.Query('#btn_logout').forEach(btn => {
 // Bloquear pantalla
 g.Query('#btn_lock').forEach(btn => {
   btn.onclick = async () => {
-    let username = gCookie.get('SoDe-Remember');
+    let usuario = gCookie.get('SoDe-Remember');
     gCookie.clean();
-    gCookie.set('SoDe-Remember', username);
+    gCookie.set('SoDe-Remember', usuario);
     try {
-      var res = await fetch(`${prepath}./api/session/logout`, {
+      var res = await fetch(`${prepath}./api/sesion/cerrar`, {
         method: 'POST',
         headers: {
           'SoDe-Auth-Required': 'Yes'
