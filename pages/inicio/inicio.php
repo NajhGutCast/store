@@ -1,15 +1,16 @@
 <?php
 include_once '../../components/session.php';
+$title = 'Inicio | Activity';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <?php include_once '../../components/styles.php'; ?>
-  <title>Dashboard | Activity</title>
+  <title><?php echo $title; ?></title>
 </head>
 
-<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
 
   <!-- Begin page -->
   <div id="wrapper">
@@ -42,7 +43,7 @@ include_once '../../components/session.php';
             </div>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -67,7 +68,7 @@ include_once '../../components/session.php';
                   </div>
                 </div>
               </div>
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -92,7 +93,7 @@ include_once '../../components/session.php';
 
                 </div>
               </div>
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -119,12 +120,12 @@ include_once '../../components/session.php';
                   </div>
                 </div>
               </div>
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
                 <div class="card-body">
-                <div class="dropdown float-end">
+                  <div class="dropdown float-end">
                     <a href="./activities/revised">
                       <i class="mdi mdi-arrow-top-right arrow-none"></i>
                     </a>
@@ -147,12 +148,11 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
-          </div>
-          <!-- end row -->
+          </div> -->
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xl-4">
               <div class="card">
                 <div class="card-body">
@@ -161,13 +161,13 @@ include_once '../../components/session.php';
                       <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ include_once '../../components/session.php';
                   </div>
                 </div>
               </div>
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-4">
               <div class="card">
@@ -197,13 +197,13 @@ include_once '../../components/session.php';
                       <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
@@ -211,7 +211,7 @@ include_once '../../components/session.php';
                   <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
                 </div>
               </div>
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-4">
               <div class="card">
@@ -221,13 +221,13 @@ include_once '../../components/session.php';
                       <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
@@ -235,12 +235,10 @@ include_once '../../components/session.php';
                   <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
                 </div>
               </div>
-            </div><!-- end col -->
-          </div>
-          <!-- end row -->
+            </div>
+          </div> -->
 
-
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xl-3 col-md-6">
               <div class="card">
                 <div class="card-body widget-user">
@@ -257,7 +255,7 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -275,7 +273,7 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -293,7 +291,7 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-3 col-md-6">
               <div class="card">
@@ -311,13 +309,11 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
-          </div>
-          <!-- end row -->
+          </div> -->
 
-
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xl-4">
               <div class="card">
                 <div class="card-body">
@@ -326,13 +322,13 @@ include_once '../../components/session.php';
                       <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
@@ -389,7 +385,7 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
             <div class="col-xl-8">
               <div class="card">
@@ -399,13 +395,13 @@ include_once '../../components/session.php';
                       <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                      <!-- item-->
+                      
                       <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
@@ -482,10 +478,9 @@ include_once '../../components/session.php';
                 </div>
               </div>
 
-            </div><!-- end col -->
+            </div>
 
-          </div>
-          <!-- end row -->
+          </div> -->
 
         </div> <!-- container-fluid -->
 

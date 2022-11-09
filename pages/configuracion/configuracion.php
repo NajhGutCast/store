@@ -64,21 +64,17 @@ include_once '../../components/session.php';
                       <div class="col-md-6 col-sm-12 text-center text-middle p-2 pt-0 d-md-grid d-sm-unset justify-content-center align-items-center">
                         <div>
                           <input type="file" id="entry_image" accept=".jpg, .jpeg, .png, .svg" class="visually-hidden" changed="false">
-                          <img id="preview_image" class="avatar-xxl rounded-circle m-2" g-attr="src: ./api/perfil/__id_relativo__/mini; alt: Perfil de __name__;" src="./images/user_not_found.svg" style="background-color: #38414a;object-fit: cover; object-position: center center; cursor: pointer;" onclick="entry_image.click()">
+                          <img id="preview_image" class="avatar-xxl rounded-circle m-2" g-attr="src: ./api/perfil/__id_relativo__/mini; alt: Perfil de __persona.nombres__;" src="./images/user_not_found.svg" style="background-color: #38414a;object-fit: cover; object-position: center center; cursor: pointer;" onclick="entry_image.click()">
                           <div class="btn-group btn-block m-auto my-2 d-md-block d-sm-unset">
                             <button type="button" class="btn btn-dark rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Opciones <i class="mdi mdi-chevron-down"></i> </button>
                             <div class="dropdown-menu">
-                              <a id="watch_image" class="dropdown-item" href="./images/user_not_found.svg" 
-                              g-attr="href: ./api/perfil/__id_relativo__/full"
-                              target="_blank">
+                              <a id="watch_image" class="dropdown-item" href="./images/user_not_found.svg" g-attr="href: ./api/perfil/__id_relativo__/full" target="_blank">
                                 Ver imagen
                               </a>
                               <a class="dropdown-item" href="javascript:void(0);" onclick="entry_image.click()">
                                 Subir imagen
                               </a>
-                              <a id="download_image" class="dropdown-item" href="./images/user_not_found.svg"
-                              g-attr="href: ./api/perfil/__id_relativo__/full; download: __username__.png"
-                              target="_blank">
+                              <a id="download_image" class="dropdown-item" href="./images/user_not_found.svg" g-attr="href: ./api/perfil/__id_relativo__/full; download: __usuario__.png" target="_blank">
                                 Descargar imagen
                               </a>
                               <a class="dropdown-item" href="javascript:void(0);" onclick="onDeleteProfileClicked()">
@@ -95,7 +91,7 @@ include_once '../../components/session.php';
                               Nombre de usuario
                               <code>*</code>
                             </label>
-                            <input type="text" id="entry_username" class="form-control" placeholder="Nombre de usuario" minlength="4" g-attr="value: __username__" required>
+                            <input type="text" id="entry_username" data-entry="usuario" class="form-control" placeholder="Nombre de usuario" minlength="4" g-attr="value: __usuario__" required>
                           </div>
                           <div class="col-12 mb-3">
                             <label for="entry_password" class="form-label mb-1">
@@ -103,7 +99,7 @@ include_once '../../components/session.php';
                               <code>*</code>
                             </label>
                             <div class="input-group input-group-merge">
-                              <input type="password" id="entry_password" class="form-control" placeholder="Contraseña" required>
+                              <input type="password" id="entry_password" data-entry="clave" class="form-control" placeholder="Contraseña" required>
                               <div class="input-group-text hide-password" data-password="false">
                                 <span class="password-eye"></span>
                               </div>
@@ -127,7 +123,7 @@ include_once '../../components/session.php';
                               <code>*</code>
                             </label>
                             <div class="input-group input-group-merge">
-                              <input type="password" id="entry_password_new" class="form-control" placeholder="Contraseña" required>
+                              <input type="password" id="entry_password_new" data-entry="clave_nueva" class="form-control" placeholder="Contraseña" required>
                               <div class="input-group-text hide-password" data-password="false">
                                 <span class="password-eye"></span>
                               </div>
@@ -139,7 +135,7 @@ include_once '../../components/session.php';
                               <code>*</code>
                             </label>
                             <div class="input-group input-group-merge">
-                              <input type="password" id="entry_password_confirm" class="form-control" placeholder="Contraseña" required>
+                              <input type="password" id="entry_password_confirm" data-entry="clave_confirmacion" class="form-control" placeholder="Contraseña" required>
                               <div class="input-group-text hide-password" data-password="false">
                                 <span class="password-eye"></span>
                               </div>
@@ -151,7 +147,7 @@ include_once '../../components/session.php';
                               <code>*</code>
                             </label>
                             <div class="input-group input-group-merge">
-                              <input type="password" id="entry_password" class="form-control" placeholder="Contraseña" required>
+                              <input type="password" id="entry_password" data-entry="clave" class="form-control" placeholder="Contraseña" required>
                               <div class="input-group-text hide-password" data-password="false">
                                 <span class="password-eye"></span>
                               </div>
@@ -166,6 +162,16 @@ include_once '../../components/session.php';
                   </form>
                   <form class="tab-pane" id="personal_form" autocomplete="off">
                     <div class="row align-items-center justify-content-center">
+                      <div class="mb-3 col-md-6">
+                        <label for="entry_type_doc" class="form-label mb-1">
+                          Tipo documento
+                          <code>*</code>
+                        </label>
+                        <select id="entry_type_doc" class="form-select" required g-attr="value: __persona.numerodocumento__">
+                          <option value="DNI" g-cond="">DNI - Documento Nacional de Identidad</option>
+                          <option value="RUC" g-cond="">RUC - Registro Único de Contribuyente</option>
+                        </select>
+                      </div>
                       <div class="mb-3 col-md-6">
                         <label for="entry_dni" class="form-label mb-1">
                           DNI

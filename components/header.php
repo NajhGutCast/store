@@ -218,6 +218,25 @@
 
       </ul>
 
+      <div class="logo-box">
+        <a href="index.html" class="logo logo-light text-center">
+          <span class="logo-sm">
+            <img src="./assets/images/logo-sm.png" alt="" height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="./assets/images/logo-light.png" alt="" height="16">
+          </span>
+        </a>
+        <a href="index.html" class="logo logo-dark text-center">
+          <span class="logo-sm">
+            <img src="./assets/images/logo-sm.png" alt="" height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="./assets/images/logo-dark.png" alt="" height="16">
+          </span>
+        </a>
+      </div>
+
       <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
         <li>
           <button class="button-menu-mobile disable-btn waves-effect">
@@ -226,7 +245,11 @@
         </li>
 
         <li>
-          <h4 class="page-title-main">Store | By: Ruth Najhely</h4>
+          <h4 class="page-title-main">
+            <?php
+            echo isset($title) ? $title : 'Store | By: Ruth Najhely';
+            ?>
+          </h4>
         </li>
 
       </ul>
