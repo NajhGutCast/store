@@ -2,9 +2,9 @@
 
   <div class="h-100" data-simplebar>
     <div class="user-box text-center">
-      <img g-attr="src: <?php echo isset($prepath) ? $prepath : null; ?>./api/profile/__relative_id__/mini; alt: Perfil de __name__;" src="<?php echo isset($prepath) ? $prepath : null; ?>./images/user_not_found.svg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md" style="background: transparent; object-fit: cover; object-position: center center;">
+      <img g-attr="src: <?php echo isset($prepath) ? $prepath : null; ?>./api/perfil/__id_relativo__/mini; alt: Perfil de __persona.nombres__;" src="<?php echo isset($prepath) ? $prepath : null; ?>./images/user_not_found.svg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md" style="background: transparent; object-fit: cover; object-position: center center;">
       <div class="dropdown">
-        <a g-text="__name__" href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false"></a>
+        <a g-text="__persona.nombres__" href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown" aria-expanded="false"></a>
         <div class="dropdown-menu user-pro-dropdown">
 
           <a href="javascript:void(0);" class="dropdown-item notify-item">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <p g-attr="title: __role.description__" g-text="__role.role__" class="text-muted left-user-info"></p>
+      <p g-attr="title: __rol.descripcion__" g-text="__rol.rol__" class="text-muted left-user-info"></p>
 
       <ul class="list-inline">
         <li class="list-inline-item" title="Configuración">
@@ -63,13 +63,13 @@
 
         <li class="menu-title mt-2">Principal</li>
 
-        <li g-cond="
-          hasPermission('activities/pending', 'read') ||
-          hasPermission('activities/done', 'read') ||
-          hasPermission('activities/toreview', 'read') ||
-          hasPermission('activities/revised', 'read') ||
-          hasPermission('activities/rejected', 'read') ||
-          hasPermission('activities/billed', 'read')
+        <!-- <li g-cond="
+          tienePermiso('activities/pending', 'read') ||
+          tienePermiso('activities/done', 'read') ||
+          tienePermiso('activities/toreview', 'read') ||
+          tienePermiso('activities/revised', 'read') ||
+          tienePermiso('activities/rejected', 'read') ||
+          tienePermiso('activities/billed', 'read')
         " g-else-attr="class: visually-hidden">
           <a href="#menu_activities" data-bs-toggle="collapse">
             <i class="mdi mdi-clipboard"></i>
@@ -78,36 +78,36 @@
           </a>
           <div class="collapse" id="menu_activities">
             <ul class="nav-second-level">
-              <li g-cond="hasPermission('activities/pending', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/pending', 'read')" g-else-attr="class: visually-hidden">
                 <a href="./activityespending">Pendientes</a>
               </li>
-              <li g-cond="hasPermission('activities/done', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/done', 'read')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./activities/done">Realizadas</a>
               </li>
-              <li g-cond="hasPermission('activities/toreview', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/toreview', 'read')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./activities/toreview">Para revisar</a>
               </li>
-              <li g-cond="hasPermission('activities/revised', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/revised', 'read')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./activities/revised">Revisadas</a>
               </li>
-              <li g-cond="hasPermission('activities/rejected', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/rejected', 'read')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./activities/rejected">Rechazadas</a>
               </li>
-              <li g-cond="hasPermission('activities/billed', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('activities/billed', 'read')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./activities/billed">Facturadas</a>
               </li>
             </ul>
           </div>
-        </li>
+        </li> -->
 
-        <li g-cond="hasPermission('modules', 'read')" g-else-attr="class: visually-hidden">
+        <!-- <li g-cond="tienePermiso('modules', 'read')" g-else-attr="class: visually-hidden">
           <a href="<?php echo isset($prepath) ? $prepath : null; ?>./modules">
             <i class="mdi mdi-page-next"></i>
             <span> Módulos </span>
           </a>
         </li>
 
-        <li g-cond="hasPermission('environments', 'read')" g-else-attr="class: visually-hidden">
+        <li g-cond="tienePermiso('environments', 'read')" g-else-attr="class: visually-hidden">
           <a href="<?php echo isset($prepath) ? $prepath : null; ?>./environments">
             <i class="mdi mdi-code-braces"></i>
             <span> Ambientes </span>
@@ -119,9 +119,9 @@
             <i class="mdi mdi-bell"></i>
             <span> Notificaciones </span>
           </a>
-        </li>
+        </li> -->
 
-        <li g-cond="hasPermission('users', 'read') || hasPermission('roles', 'read')" g-else-attr="class: visually-hidden">
+        <li g-cond="tienePermiso('usuarios', 'listar') || tienePermiso('roles', 'listar')" g-else-attr="class: visually-hidden">
           <a href="#menu_admin" data-bs-toggle="collapse">
             <i class="mdi mdi-account"></i>
             <span> Usuarios y accesos </span>
@@ -129,10 +129,10 @@
           </a>
           <div class="collapse" id="menu_admin">
             <ul class="nav-second-level">
-              <li g-cond="hasPermission('users', 'read')" g-else-attr="class: visually-hidden">
-                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./users">Usuarios</a>
+              <li g-cond="tienePermiso('usuarios', 'listar')" g-else-attr="class: visually-hidden">
+                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./usuarios">Usuarios</a>
               </li>
-              <li g-cond="hasPermission('roles', 'read')" g-else-attr="class: visually-hidden">
+              <li g-cond="tienePermiso('roles', 'listar')" g-else-attr="class: visually-hidden">
                 <a href="<?php echo isset($prepath) ? $prepath : null; ?>./roles">Roles y permisos</a>
               </li>
             </ul>
@@ -150,16 +150,16 @@
           <div class="collapse" id="menu_account">
             <ul class="nav-second-level">
               <li>
-                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./me">Configuración</a>
+                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./configuracion">Configuración</a>
               </li>
               <li>
-                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./profile">Mi perfil</a>
+                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./perfil">Mi perfil</a>
               </li>
             </ul>
           </div>
         </li>
 
-        <li g-cond="!permissions.isRoot" g-if-attr="class: visually-hidden">
+        <li g-cond="!permisos.esRoot" g-if-attr="class: visually-hidden">
           <a href="#menu_system" data-bs-toggle="collapse">
             <i class="mdi mdi-application-cog"></i>
             <span> Sistema </span>
@@ -168,10 +168,10 @@
           <div class="collapse" id="menu_system">
             <ul class="nav-second-level">
               <li>
-                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./views">Vistas</a>
+                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./vistas">Vistas</a>
               </li>
               <li>
-                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./permissions">Permisos</a>
+                <a href="<?php echo isset($prepath) ? $prepath : null; ?>./permisos">Permisos</a>
               </li>
             </ul>
           </div>

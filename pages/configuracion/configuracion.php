@@ -64,12 +64,12 @@ include_once '../../components/session.php';
                       <div class="col-md-6 col-sm-12 text-center text-middle p-2 pt-0 d-md-grid d-sm-unset justify-content-center align-items-center">
                         <div>
                           <input type="file" id="entry_image" accept=".jpg, .jpeg, .png, .svg" class="visually-hidden" changed="false">
-                          <img id="preview_image" class="avatar-xxl rounded-circle m-2" g-attr="src: ./api/profile/__relative_id__/mini; alt: Perfil de __name__;" src="./images/user_not_found.svg" style="background-color: #38414a;object-fit: cover; object-position: center center; cursor: pointer;" onclick="entry_image.click()">
+                          <img id="preview_image" class="avatar-xxl rounded-circle m-2" g-attr="src: ./api/perfil/__id_relativo__/mini; alt: Perfil de __name__;" src="./images/user_not_found.svg" style="background-color: #38414a;object-fit: cover; object-position: center center; cursor: pointer;" onclick="entry_image.click()">
                           <div class="btn-group btn-block m-auto my-2 d-md-block d-sm-unset">
                             <button type="button" class="btn btn-dark rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Opciones <i class="mdi mdi-chevron-down"></i> </button>
                             <div class="dropdown-menu">
                               <a id="watch_image" class="dropdown-item" href="./images/user_not_found.svg" 
-                              g-attr="href: ./api/profile/__relative_id__/full"
+                              g-attr="href: ./api/perfil/__id_relativo__/full"
                               target="_blank">
                                 Ver imagen
                               </a>
@@ -77,7 +77,7 @@ include_once '../../components/session.php';
                                 Subir imagen
                               </a>
                               <a id="download_image" class="dropdown-item" href="./images/user_not_found.svg"
-                              g-attr="href: ./api/profile/__relative_id__/full; download: __username__.png"
+                              g-attr="href: ./api/perfil/__id_relativo__/full; download: __username__.png"
                               target="_blank">
                                 Descargar imagen
                               </a>
@@ -171,21 +171,21 @@ include_once '../../components/session.php';
                           DNI
                           <code>*</code>
                         </label>
-                        <input type="text" id="entry_dni" class="form-control" placeholder="Número de documento" required g-attr="value: __dni__" disabled>
+                        <input type="text" id="entry_dni" class="form-control" placeholder="Número de documento" required g-attr="value: __persona.numerodocumento__" disabled>
                       </div>
                       <div class="mb-3 col-md-6">
                         <label for="entry_lastname" class="form-label mb-1">
                           Apellidos
                           <code>*</code>
                         </label>
-                        <input type="text" id="entry_lastname" class="form-control" placeholder="Apellidos" required g-attr="value: __lastname__">
+                        <input type="text" id="entry_lastname" class="form-control" placeholder="Apellidos" required g-attr="value: __persona.apellidos__">
                       </div>
                       <div class="mb-3 col-md-6">
                         <label for="entry_name" class="form-label mb-1">
                           Nombres
                           <code>*</code>
                         </label>
-                        <input type="text" id="entry_name" class="form-control" placeholder="Nombres" required g-attr="value: __name__">
+                        <input type="text" id="entry_name" class="form-control" placeholder="Nombres" required g-attr="value: __persona.nombres__">
                       </div>
                       <div class="mb-3 col-md-6">
                         <label for="entry_phone_number" class="form-label mb-1">Nro de WhatsApp</label>
@@ -234,8 +234,8 @@ include_once '../../components/session.php';
 
   <?php include_once '../../components/scripts.php'; ?>
 
-  <script src="./crud/me/<?php echo uniqid(); ?>"></script>
-  <script src="./script/me/<?php echo uniqid(); ?>"></script>
+  <script src="./crud/configuracion/<?php echo uniqid(); ?>"></script>
+  <script src="./script/configuracion/<?php echo uniqid(); ?>"></script>
 
 
 </body>

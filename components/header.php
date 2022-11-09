@@ -175,9 +175,9 @@
 
         <li class="dropdown notification-list topbar-dropdown">
           <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-            <img g-attr="src: <?php echo isset($prepath) ? $prepath : null; ?>./api/profile/__relative_id__/mini; alt: Perfil de __name__;" src="<?php echo isset($prepath) ? $prepath : null; ?>./images/user_not_found.svg" alt="user-image" class="rounded-circle" style="object-fit: cover; object-position: center center;">
+            <img g-attr="src: <?php echo isset($prepath) ? $prepath : null; ?>./api/perfil/__id_relativo__/mini; alt: Perfil de __persona.nombres__;" src="<?php echo isset($prepath) ? $prepath : null; ?>./images/user_not_found.svg" alt="user-image" class="rounded-circle" style="object-fit: cover; object-position: center center;">
             <span class="pro-user-name ms-1">
-              <span g-text="__name__"></span>
+              <span g-text="__persona.nombres__"></span>
               <i class="mdi mdi-chevron-down"></i>
             </span>
           </a>
@@ -218,26 +218,6 @@
 
       </ul>
 
-      <!-- LOGO -->
-      <!-- <div class="logo-box">
-        <a href="<?php echo isset($prepath) ? $prepath : null; ?>./home" class="logo logo-light text-center">
-          <span class="logo-sm">
-            <img src="<?php echo isset($prepath) ? $prepath : null; ?>./assets/images/logo-sm.png" alt="" height="22">
-          </span>
-          <span class="logo-lg">
-            <img src="<?php echo isset($prepath) ? $prepath : null; ?>./assets/images/logo-light.png" alt="" height="16">
-          </span>
-        </a>
-        <a href="<?php echo isset($prepath) ? $prepath : null; ?>./home" class="logo logo-dark text-center">
-          <span class="logo-sm">
-            <img src="<?php echo isset($prepath) ? $prepath : null; ?>./assets/images/logo-sm.png" alt="" height="22">
-          </span>
-          <span class="logo-lg">
-            <img src="<?php echo isset($prepath) ? $prepath : null; ?>./assets/images/logo-dark.png" alt="" height="16">
-          </span>
-        </a>
-      </div> -->
-
       <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
         <li>
           <button class="button-menu-mobile disable-btn waves-effect">
@@ -246,7 +226,7 @@
         </li>
 
         <li>
-          <h4 class="page-title-main">Activity | By: SoDe World</h4>
+          <h4 class="page-title-main">Store | By: Ruth Najhely</h4>
         </li>
 
       </ul>

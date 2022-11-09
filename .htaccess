@@ -26,11 +26,11 @@
     RewriteRule ^activities/pending         pages/pending/pending.php [QSA]
     RewriteRule ^modules                    pages/modules/modules.php [QSA]
     RewriteRule ^environments               pages/environments/environments.php [QSA]
-    RewriteRule ^users                      pages/users/users.php [QSA]
-    RewriteRule ^views                      pages/views/views.php [QSA]
+    RewriteRule ^usuarios                   pages/usuarios/usuarios.php [QSA]
+    RewriteRule ^vistas                     pages/vistas/vistas.php [QSA]
     RewriteRule ^roles                      pages/roles/roles.php [QSA]
-    RewriteRule ^permissions                pages/permissions/permissions.php [QSA]
-    RewriteRule ^me                         pages/me/me.php [QSA]
+    RewriteRule ^permisos                   pages/permisos/permisos.php [QSA]
+    RewriteRule ^configuracion              pages/configuracion/configuracion.php [QSA]
 
     # ACTIVITIES
     RewriteRule ^activityespending          pages/activities_pending/activities_pending.php [QSA]

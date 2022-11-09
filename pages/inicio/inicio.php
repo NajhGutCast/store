@@ -9,7 +9,7 @@ include_once '../../components/session.php';
   <title>Dashboard | Activity</title>
 </head>
 
-<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "dark", "size": "default", "showuser": true}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+<body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
 
   <!-- Begin page -->
   <div id="wrapper">
@@ -36,8 +36,8 @@ include_once '../../components/session.php';
           <div class="row">
             <div class="col-12 mb-2">
               <h2>
-                <span class="text-muted">Bienvenido a Activity,</span>
-                <span g-text="__name__ __lastname__"></span>
+                <span class="text-muted">Bienvenido a Store,</span>
+                <span g-text="__persona.nombres__ __persona.apellidos__"></span>
               </h2>
             </div>
           </div>
